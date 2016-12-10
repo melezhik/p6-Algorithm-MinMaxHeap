@@ -1,13 +1,15 @@
 language: perl6
 perl6:
   - latest
+before_install:
+  - apt-get install cpanminus
+  - cpanm -q --notest install Sparrow
+  - sparrow plg install p6-algorithm-minmaxheap-smoke
 install:
   - rakudobrew build-panda
   - panda --notests installdeps .
-  - cpanm -q --notest install Sparrow 
-  - sparrow plg install p6-algorithm-minmaxheap-smoke
 script:
   - perl6 -MPanda::Builder -e 'Panda::Builder.build(~$*CWD)'
   - PERL6LIB=$PWD/lib prove -e perl6 -vr t/
   - PERL6LIB=$PWD/lib sparrow plg run p6-algorithm-minmaxheap-smoke
-sudo: false
+sudo: true
