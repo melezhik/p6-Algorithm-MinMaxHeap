@@ -4,7 +4,7 @@ perl6:
 install:
   - rakudobrew build-panda
   - panda --notests installdeps .
-  - cpanm -q --notest install Sparrow
+  - cpanm -q --notest install Sparrow 
   - sparrow plg install p6-algorithm-minmaxheap-smoke
 script:
   - perl6 -MPanda::Builder -e 'Panda::Builder.build(~$*CWD)'
